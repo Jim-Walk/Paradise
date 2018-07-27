@@ -1,0 +1,7 @@
+{
+  "test_a.py::test_count_roundels": true,
+  "test_poemGen.py::test_count_roundels": true,
+  "test_poemGen.py::test_number_of_lines": true,
+  "tests/test_poemGen.py::test_count_roundels": true,
+  "tests/test_poemGen.py::test_number_of_lines": true
+}
