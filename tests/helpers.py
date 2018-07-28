@@ -15,3 +15,13 @@ def countRoundels(text):
                 roundels += 1
     print('Found ', roundels, '°\'s in ', lines, 'lines')
     return roundels
+
+def count_gloss(text):
+    counter = 0
+    for line in text:
+        counter += 1
+        for char in line:
+            if "/" == char:
+                counter += 1
+    return counter
+
