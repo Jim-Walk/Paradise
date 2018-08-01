@@ -5,7 +5,7 @@
 
 import codecs
 
-def countRoundels(text):
+def count_roundels(text):
     roundels = 0
     lines = 0
     for line in text:
