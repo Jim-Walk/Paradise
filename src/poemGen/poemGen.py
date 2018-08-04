@@ -129,7 +129,7 @@ def comb_feet(text, poem, feet):
 
 
 def sweep_line_numbers(text, poem, feet):
-    if text[0] == "Book 1\n":
+    if text[0] == "BOOK 1\n" and text[2] == "180\n":
         import pdb; pdb.set_trace()
     if BOOK_HEAD.match(text[1]):
         del text[1]

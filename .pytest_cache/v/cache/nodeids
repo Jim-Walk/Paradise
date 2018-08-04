@@ -1,6 +1,0 @@
-[
-  "tests/test_poemGen.py::test_count_roundels",
-  "tests/test_poemGen.py::test_number_of_lines",
-  "tests/test_poemGen.py::test_count_roundels_pf",
-  "tests/test_poemGen.py::test_12_books"
-]
