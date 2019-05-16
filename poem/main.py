@@ -1,11 +1,15 @@
 #!/usr/bin/python3
 import codecs, copy
 from src.poemGen.poemGen import parseGloss, parse_footnotes
+import faulthandler
 
 def main():
+    faulthandler.enable()
     with codecs.open('raw.txt', 'r', encoding='utf8') as raw:
         text = raw.readlines()
+        print('Read lines')
     pf, gloss = parseGloss(text)
+    print('Parsed gloss')
     poem, feet = parse_footnotes(copy.copy(pf))
     print('File parsed')
 

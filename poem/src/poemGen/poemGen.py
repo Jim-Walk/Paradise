@@ -1,5 +1,6 @@
 import re, codecs, sys
 sys.setrecursionlimit(50000)
+import pdb
 
 # regexes are global variable so they are only created once
 # and always in scope
@@ -19,7 +20,7 @@ def parseGloss(text):
 # roundels = int
 
 def getGloss(text, pf, gloss, roundels):
-    # when there is no more text to process we are  finished
+    # when there is no more text to process we are finished
     if text == []:
         return pf, gloss
 
