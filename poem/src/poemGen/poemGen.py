@@ -109,6 +109,7 @@ def get_feet(text, poem, feet):
     if not NONDIGIT.match(text[0]):
         return comb_feet(text, poem, feet)
 
+# Entered a poem section, grab all lines until we break
 def comb_poem(text, poem, feet):
     if text == []:
         return get_feet(text, poem, feet)
@@ -119,7 +120,12 @@ def comb_poem(text, poem, feet):
         poem += [text.pop(0)]
         return comb_poem(text, poem, feet)
 
+# Entered a footnote section, grab all lines until we break
 def comb_feet(text, poem, feet):
+    # Edge case, accidentally hit a poem line with a °
+    if '°' in text[0]:
+        poem += [text.pop(0)]
+        return sweep_line_numbers(text, poem, feet)
     if text == []:
         return get_feet(text, poem, feet)
     if text[0] == '\n':
