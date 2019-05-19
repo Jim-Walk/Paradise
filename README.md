@@ -1,5 +1,8 @@
 # Paradise Project
+[![Build Status](https://travis-ci.com/andrewpsuedonym/Paradise.svg?branch=master)](https://travis-ci.com/andrewpsuedonym/Paradise)
 
 This repo holds everything necessary for the Paradise Project. The current goal of the project is to create a twitter account that tweets the entire contents of Paradise Lost, and to then create seperate twitter accounts which reply to the first account with the gloss and footnotes.
 
-Test units require pytest, install them with `pip3 install pytest`. If you get a seg fault when parsing, your stack size might be conservative. Increase it with `ulimt -s unlimited`
+## Tests
+
+Use `./test.sh` to run tests 
