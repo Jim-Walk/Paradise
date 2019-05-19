@@ -7,4 +7,4 @@ install:
     pip install -r poem/requirements.txt
 
 script:
-    pytest
+    cd poem && pytest
