@@ -16,12 +16,10 @@ BOOK_HEAD = re.compile("Book \d")
 def parseGloss(text):
     return getGloss(text, [], [], 0)
 
-# text, pf, gloss = []
-# roundels = int
-
 def getGloss(text, pf, gloss, roundels):
     # when there is no more text to process we are finished
     if text == []:
+        print(roundels)
         return pf, gloss
 
     elif roundels == 0:
@@ -33,7 +31,6 @@ def getGloss(text, pf, gloss, roundels):
         # always decreases after counting the roundels in a line
         line = text.pop(0)
         pf += [line]
-        # if not not a digit, i.e. it is a digit
 
         # in an edge case, some lines with roundels start with a number,
         # and are then followed by more line numbers, before the poem starts

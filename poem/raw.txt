@@ -20560,7 +20560,7 @@ clearly understood as such by Adam; he echoes an argument Milton often invoked t
 psychological servility, and political liberty to inner freedom, i.e., the exercise of “right Reason” and control of passions.
 
 Book 12
-85 Twinn’d, and from her hath no dividual° being:
+85
 
 90
 
@@ -20572,6 +20572,7 @@ Book 12
 
 110
 
+Twinn’d, and from her hath no dividual° being:
 Reason in man obscur’d, or not obeyd,
 Immediately inordinate desires
 And upstart Passions catch° the Government
