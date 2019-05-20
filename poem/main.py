@@ -7,15 +7,10 @@ def main():
     faulthandler.enable()
     with codecs.open('raw.txt', 'r', encoding='utf8') as raw:
         text = raw.readlines()
-        print('Read lines')
     pf, gloss = parseGloss(text)
     print('Parsed gloss')
     poem, feet = parse_footnotes(copy.copy(pf))
     print('File parsed')
-
-    with codecs.open('pf.txt', 'w', encoding='utf8') as pf_file:
-        for line in pf:
-            pf_file.write(line)
 
     with codecs.open('poem.txt', 'w', encoding='utf8') as poem_file:
         for line in poem:
