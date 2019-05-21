@@ -22,11 +22,11 @@ if __name__ == '__main__':
             if verse.split('\n')[0].strip() == 'THE ARGUMENT':
                 verse = 'BOOK ' + str(book_num) + '\n' + verse
                 API.update_status(verse)
-                time.sleep(3600)
+                time.sleep(1800)
             while verse != '':
                 sec += 1
                 verse = g.get_verse(book_num, sec)
                 API.update_status(verse)
-                time.sleep(3600)
+                time.sleep(1800)
                 if verse.split('\n')[0].strip() == 'THE END':
                     break
