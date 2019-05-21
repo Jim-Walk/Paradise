@@ -2,7 +2,7 @@
 
 import tweepy
 import config
-import src.Grabber
+import src.Grabber as Grabber
 import time
 
 auth = tweepy.OAuthHandler(config.CONSUMER_KEY, config.CONSUMER_SECRET)
