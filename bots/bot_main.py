@@ -13,6 +13,9 @@ API = tweepy.API(auth)
 # Sometimes a section is outside of a book, and then we return blank
 # sometimes a section is at the end of the book, and then we need to know
 # so we can break the loop
+def get_most_recent_verse():
+    tweet_list = API.user_timeline(count=1, tweet_mode='extended')
+    return tweet_list[0]._json['full_text']
 
 if __name__ == '__main__':
     debug = False
@@ -26,7 +29,7 @@ if __name__ == '__main__':
     i = 0
     while True:
         print('Bot has completed', i, 'readings')
-        newest_verse = util.get_most_recent_verse()
+        newest_verse = get_most_recent_verse()
         book_num, sec = g.get_bk_sec(newest_verse)
         while book_num < 13:
             verse = g.get_verse(book_num, sec)
