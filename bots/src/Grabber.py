@@ -1,7 +1,5 @@
 import re
 import time
-import src.util as util
-
 
 BOOKS = re.compile('BOOK \d')
 
