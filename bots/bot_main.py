@@ -26,7 +26,8 @@ if __name__ == '__main__':
     i = 0
     while True:
         print('Bot has completed', i, 'readings')
-        book_num, sec = g.get_recent_bk_sec()
+        newest_verse = util.get_most_recent_verse()
+        book_num, sec = g.get_bk_sec(newest_verse)
         while book_num < 13:
             verse = g.get_verse(book_num, sec)
             # Essentially a do while to make sure we include

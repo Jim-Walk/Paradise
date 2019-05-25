@@ -24,11 +24,10 @@ class Grabber():
             i += 1
 
 
-    # Returns book and section of the most recent tweet
-    def get_recent_bk_sec(self):
+    # Returns book and section of a given verse
+    def get_bk_sec(self, recent_verse):
         bk = 1
         sec = 1
-        recent_verse = util.get_most_recent_verse()
         verse = ''
         while recent_verse.strip() != verse.strip():
             verse = self.get_verse(bk,sec)
