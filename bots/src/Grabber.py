@@ -1,6 +1,6 @@
 import re
 import time
-import util
+import src.util as util
 
 
 BOOKS = re.compile('BOOK \d')
