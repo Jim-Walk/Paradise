@@ -4,8 +4,7 @@ python:
     3.6
 
 install:
-    pip install -r poem/requirements.txt
-    pip install -r bots/requirements.txt
+    pip install -r poem/requirements.txt && pip install -r bots/requirements.txt
 
 script:
     ./test.sh
