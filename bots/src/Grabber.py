@@ -1,14 +1,12 @@
 import re
-import tweepy
 import config
 import time
+import util
 
-auth = tweepy.OAuthHandler(config.CONSUMER_KEY, config.CONSUMER_SECRET)
-auth.set_access_token(config.ACCESS_KEY, config.ACCESS_SECRET)
-API = tweepy.API(auth)
 
 BOOKS = re.compile('BOOK \d')
 
+# Grabber gets things from the poem text to post
 class Grabber():
 
     poem = ""
@@ -26,15 +24,12 @@ class Grabber():
                 self.book_idxs += [i]
             i += 1
 
-    def get_most_recent_verse(self):
-        tweet_list = API.user_timeline(count=1, tweet_mode='extended')
-        return tweet_list[0]._json['full_text']
 
     # Returns book and section of the most recent tweet
     def get_recent_bk_sec(self):
         bk = 1
         sec = 1
-        recent_verse = self.get_most_recent_verse()
+        recent_verse = util.get_most_recent_verse()
         verse = ''
         while recent_verse.strip() != verse.strip():
             verse = self.get_verse(bk,sec)
