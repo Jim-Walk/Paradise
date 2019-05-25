@@ -5,6 +5,7 @@ python:
 
 install:
     pip install -r poem/requirements.txt
+    pip install -r bots/requirements.txt
 
 script:
     ./test.sh

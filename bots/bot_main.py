@@ -3,8 +3,8 @@
 import tweepy
 import config
 import src.Grabber as Grabber
-import time
-import sys
+import src.util as util
+import sys, time
 
 auth = tweepy.OAuthHandler(config.CONSUMER_KEY, config.CONSUMER_SECRET)
 auth.set_access_token(config.ACCESS_KEY, config.ACCESS_SECRET)
@@ -13,13 +13,6 @@ API = tweepy.API(auth)
 # Sometimes a section is outside of a book, and then we return blank
 # sometimes a section is at the end of the book, and then we need to know
 # so we can break the loop
-def book_end(verse):
-    if verse == '':
-        return False
-    for line in verse.split('\n'):
-        if 'Book.' in line.split():
-            return True
-    return False
 
 if __name__ == '__main__':
     debug = False
@@ -46,7 +39,7 @@ if __name__ == '__main__':
                 else:
                     API.update_status(verse)
                     time.sleep(1800)
-            while verse != '' and not book_end(verse):
+            while verse != '' and not util.book_end(verse):
                 sec += 1
                 verse = g.get_verse(book_num, sec)
                 if debug:

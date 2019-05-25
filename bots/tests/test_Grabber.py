@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
-import pytest, codecs, copy, re
+import pytest, copy, re
 import src.Grabber as Grabber
+import src.util as util
 
 FILE = '../poem.txt'
 
@@ -16,7 +17,7 @@ def test_verse_length_280():
         if verse.split('\n')[0].strip() == 'THE ARGUMENT':
             verse = 'BOOK ' + str(book_num) + '\n' + verse
             assert len(verse) < 281
-        while verse != '':
+        while verse != '' and not util.book_end(verse):
             sec += 1
             verse = g.get_verse(book_num, sec)
             if verse.split('\n')[0].strip() == 'THE END':

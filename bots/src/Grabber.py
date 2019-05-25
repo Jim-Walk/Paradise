@@ -83,3 +83,4 @@ class Grabber():
             return verse
         else:
             return ''
+

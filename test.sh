@@ -2,4 +2,4 @@ ulimit -s unlimited
 cd poem
 pytest
 cd ../bots
-pytest
+pytest --fulltrace
