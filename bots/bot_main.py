@@ -8,16 +8,16 @@ import sys, time
 
 auth = tweepy.OAuthHandler(config.CONSUMER_KEY, config.CONSUMER_SECRET)
 auth.set_access_token(config.ACCESS_KEY, config.ACCESS_SECRET)
-API = tweepy.API(auth)
+PL_API = tweepy.API(auth)
 
 # Sometimes a section is outside of a book, and then we return blank
 # sometimes a section is at the end of the book, and then we need to know
 # so we can break the loop
 def get_most_recent_verse():
-    tweet_list = API.user_timeline(count=1, tweet_mode='extended')
+    tweet_list = PL_API.user_timeline(count=1, tweet_mode='extended')
     return tweet_list[0]._json['full_text']
 
-if __name__ == '__main__':
+def main():
     debug = False
     if len(sys.argv) > 1:
         if sys.argv[1] == '-d':
@@ -41,7 +41,7 @@ if __name__ == '__main__':
                     print(verse)
                     time.sleep(5)
                 else:
-                    API.update_status(verse)
+                    PL_API.update_status(verse)
                     time.sleep(1800)
             while verse != '' and not util.book_end(verse):
                 sec += 1
@@ -49,7 +49,7 @@ if __name__ == '__main__':
                 if debug:
                     print(verse)
                 else:
-                    API.update_status(verse)
+                    PL_API.update_status(verse)
                     time.sleep(1800)
                 # Poem End
                 if verse.split('\n')[0].strip() == 'THE END':
@@ -60,3 +60,6 @@ if __name__ == '__main__':
             book_num += 1
             sec = 1
         i += 1
+
+if __name__ == '__main__':
+    main()
