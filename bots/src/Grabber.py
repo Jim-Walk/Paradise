@@ -30,26 +30,35 @@ class Grabber():
     def get_bk_sec(self, recent_verse):
         bk = 1
         sec = 1
-        verse = ''
+        verse = self.get_verse(bk,sec)
         while recent_verse.strip() != verse.strip():
-            verse = self.get_verse(bk,sec)
+            # Check if we are outside a book
             if verse == '':
-                break
+                bk += 1
+                sec = 1
+                verse = self.get_verse(bk,sec)
+                if verse == '':
+                    break
             sec += 1
             for line in verse.split('\n'):
                 line = line.strip()
                 if BOOKS.match(line):
                     bk += 1
+                    sec = 1
+            verse = self.get_verse(bk,sec)
         return bk, sec
 
 
     # return verse for given book and section.
     # if section is not in book then we return a blank
     def get_verse(self, bk, sec):
+        if bk > 12:
+            return ''
         i = self.book_idxs[bk] + 1
         char_limit = 190
         char_count = 0; sec_count = 0
         sec_in_book = True
+        verse = ''
         while sec_count < sec and sec_in_book:
             verse = ''
             while char_count < char_limit:
@@ -100,14 +109,12 @@ class Grabber():
         # Count off corresponding number of words from
         # the gloss, using roundels-1 to fix an off by one
         i = 0
-        print('roundels', roundels)
         while i < roundels:
             if "/" in self.gloss[i]:
                 i += 1
             i += 1
         # Add as many gloss words as needed by verse
         gloss = ''
-        print('i',i)
         while verse_r > 0:
             gloss += self.gloss[i]
             if "/" in self.gloss[i]:

@@ -17,6 +17,16 @@ def get_most_recent_verse():
     tweet_list = PL_API.user_timeline(count=1, tweet_mode='extended')
     return tweet_list[0]._json['full_text']
 
+
+#def main():
+#    while True:
+#        for verse in verses(get_most_recent_verse()):
+#            tweet_id = PL_API.update_status(verse.verse)
+#            time.sleep(5)
+#            GLOSS_API.update_status(verse.gloss)
+#            FOOT_API.update_status(verse.foot)
+#            time.sleep(1800)
+
 def main():
     debug = False
     if len(sys.argv) > 1:
