@@ -3,8 +3,6 @@
 # counts the number of roundels, or ° in each line 
 # of the string array it is given
 
-import codecs
-
 def count_roundels(text):
     roundels = 0
     lines = 0
@@ -16,6 +14,7 @@ def count_roundels(text):
     print('Found ', roundels, '°s in ', lines, 'lines')
     return roundels
 
+# Counts gloss in gloss.txt
 def count_gloss(text):
     counter = 0
     for line in text:

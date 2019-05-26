@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 
-import pytest, copy, re
+import pytest
 import src.Grabber as Grabber
 import src.util as util
 
-FILE = '../poem.txt'
 
 # checks that no verse exceeds twitter's
 # character limit

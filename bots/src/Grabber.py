@@ -1,5 +1,6 @@
 import re
 import time
+import src.util as util
 
 BOOKS = re.compile('BOOK \d')
 
@@ -7,11 +8,14 @@ BOOKS = re.compile('BOOK \d')
 class Grabber():
 
     poem = ""
+    gloss = ""
     book_idxs = [0]
 
     def __init__(self):
         with open('../poem/poem.txt') as poem_f:
             self.poem = poem_f.readlines()
+        with open('../poem/gloss.txt') as gloss_f:
+            self.gloss = gloss_f.readlines()
         i = 0
         book = 1
         # Create a list of indexes where each book starts
@@ -74,4 +78,42 @@ class Grabber():
             return verse
         else:
             return ''
+
+    def get_gloss(self, verse):
+        verse_r = util.count_roundels(verse.split('\n'))
+        if verse_r == 0:
+            return ''
+
+        # Get first non blank line from verse
+        for match_line in verse.split('\n'):
+            if match_line != '':
+                break
+
+        # Count how many roundels in we've had in the poem so far
+        roundels = 0
+        for line in self.poem:
+            if line.strip() == match_line.strip():
+                break
+            if '°' in line:
+                roundels += 1
+
+        # Count off corresponding number of words from
+        # the gloss, using roundels-1 to fix an off by one
+        i = 0
+        print('roundels', roundels)
+        while i < roundels:
+            if "/" in self.gloss[i]:
+                i += 1
+            i += 1
+        # Add as many gloss words as needed by verse
+        gloss = ''
+        print('i',i)
+        while verse_r > 0:
+            gloss += self.gloss[i]
+            if "/" in self.gloss[i]:
+                verse_r -= 1
+            i += 1
+            verse_r -= 1
+
+        return gloss
 
