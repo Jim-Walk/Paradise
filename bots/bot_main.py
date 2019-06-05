@@ -3,6 +3,7 @@
 import tweepy
 import config
 import src.Grabber as Grabber
+import src.Verse as Verse
 import src.util as util
 import sys, time
 
@@ -18,15 +19,6 @@ def get_most_recent_verse():
     return tweet_list[0]._json['full_text']
 
 
-#def main():
-#    while True:
-#        for verse in verses(get_most_recent_verse()):
-#            tweet_id = PL_API.update_status(verse.verse)
-#            time.sleep(5)
-#            GLOSS_API.update_status(verse.gloss)
-#            FOOT_API.update_status(verse.foot)
-#            time.sleep(1800)
-
 def main():
     debug = False
     if len(sys.argv) > 1:
@@ -34,42 +26,14 @@ def main():
             debug = True
             print('Running in debug mode')
     print('Running bot')
-    g = Grabber.Grabber()
-    verse = ''
-    i = 0
     while True:
-        print('Bot has completed', i, 'readings')
-        newest_verse = get_most_recent_verse()
-        book_num, sec = g.get_bk_sec(newest_verse)
-        while book_num < 13:
-            verse = g.get_verse(book_num, sec)
-            # Essentially a do while to make sure we include
-            # the book header
-            if verse.split('\n')[0].strip() == 'THE ARGUMENT':
-                verse = 'BOOK ' + str(book_num) + '\n' + verse
-                if debug:
-                    print(verse)
-                    time.sleep(5)
-                else:
-                    PL_API.update_status(verse)
-                    time.sleep(1800)
-            while verse != '' and not util.book_end(verse):
-                sec += 1
-                verse = g.get_verse(book_num, sec)
-                if debug:
-                    print(verse)
-                else:
-                    PL_API.update_status(verse)
-                    time.sleep(1800)
-                # Poem End
-                if verse.split('\n')[0].strip() == 'THE END':
-                    book_num = 1
-                    break
-                # Most books have this string in their last phrase,
-                # as in, the end of the sixth book
-            book_num += 1
-            sec = 1
-        i += 1
-
-if __name__ == '__main__':
-    main()
+        v = Verse.Verse(get_most_recent_verse())
+        for v in v.gen_verses():
+            if debug:
+                print(v.verse)
+            else:
+                tweet_id = PL_API.update_status(v.verse)
+                #time.sleep(5)
+                #GLOSS_API.update_status(verse.gloss)
+                #FOOT_API.update_status(verse.foot)
+                time.sleep(1800)
