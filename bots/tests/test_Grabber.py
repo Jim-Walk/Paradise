@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 import pytest
 import src.Grabber as Grabber
 import src.util as util
