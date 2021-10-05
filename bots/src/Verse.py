@@ -13,12 +13,11 @@ class Verse():
     gloss_i = 0
     foot_i = 0
 
-    def __init__(self, bk, sec):
+    def __init__(self, verse_text):
         g = Grabber.Grabber()
-        self.bk = bk
-        self.sec = sec
-        self.verse, self.lineN = g.get_verse(bk, sec)
-        self.footnote = g.get_footnote(bk, sec)
+        self.bk, self.sec = g.get_bk_sec(verse_text)
+        self.verse, self.lineN = g.get_verse(self.bk, self.sec)
+        self.footnote = g.get_footnote(self.bk, self.sec)
         self.gloss = g.get_gloss(self.verse)
 
     def __str__(self):
@@ -35,6 +34,9 @@ class Verse():
             if self.verse == '':
                 self.sec = 1
                 self.bk += 1
+                if self.bk > 12:
+                    self.bk = 1
+                    print('Completed reading')
                 self.verse, self.lineN = g.get_verse(self.bk, self.sec)
             self.gloss = g.get_gloss(self.verse)
             self.footnote = g.get_footnote(self.bk, self.lineN)

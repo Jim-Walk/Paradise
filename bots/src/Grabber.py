@@ -57,13 +57,13 @@ class Grabber():
     def get_bk_sec(self, recent_verse):
         bk = 1
         sec = 1
-        verse = self.get_verse(bk,sec)
+        verse, sanity = self.get_verse(bk,sec)
         while recent_verse.strip() != verse.strip():
             # Check if we are outside a book
             if verse == '':
                 bk += 1
                 sec = 1
-                verse = self.get_verse(bk,sec)
+                verse, sanity = self.get_verse(bk,sec)
                 if verse == '':
                     break
             sec += 1
@@ -72,7 +72,7 @@ class Grabber():
                 if BOOKS.match(line):
                     bk += 1
                     sec = 1
-            verse = self.get_verse(bk,sec)
+            verse, sanity = self.get_verse(bk,sec)
         return bk, sec
 
 

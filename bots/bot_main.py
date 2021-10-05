@@ -16,11 +16,13 @@ PL_API = tweepy.API(auth)
 # so we can break the loop
 def get_most_recent_verse():
     tweet_list = PL_API.user_timeline(count=1, tweet_mode='extended')
-    return tweet_list[0]._json['full_text']
+    verse_text = tweet_list[0]._json['full_text']
+    return verse_text
 
 
 def main():
     debug = False
+    print('Hi')
     if len(sys.argv) > 1:
         if sys.argv[1] == '-d':
             debug = True
@@ -32,10 +34,10 @@ def main():
             if debug:
                 print(v.verse)
             else:
-                #tweet_id = PL_API.update_status(v.verse)
-                #time.sleep(5)
-                #GLOSS_API.update_status(verse.gloss)
-                #FOOT_API.update_status(verse.foot)
+                tweet_id = PL_API.update_status(v.verse)
+                time.sleep(5)
+                GLOSS_API.update_status(verse.gloss)
+                FOOT_API.update_status(verse.foot)
                 time.sleep(1800)
 
 if __name__ == '__main__':
