@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 import tweepy
 import config
@@ -32,8 +32,11 @@ def main():
             if debug:
                 print(v.verse)
             else:
-                tweet_id = PL_API.update_status(v.verse)
+                #tweet_id = PL_API.update_status(v.verse)
                 #time.sleep(5)
                 #GLOSS_API.update_status(verse.gloss)
                 #FOOT_API.update_status(verse.foot)
                 time.sleep(1800)
+
+if __name__ == '__main__':
+    main()

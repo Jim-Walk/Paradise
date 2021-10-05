@@ -3,3 +3,4 @@
 *.pdf
 .pytest_cache*
 config.py
+*venv/
